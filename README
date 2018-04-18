@@ -1,0 +1,7 @@
+Simple program for visual comparison of TLUSTY models
+More about TLUSTY http://nova.astro.umd.edu/
+https://arxiv.org/abs/1706.01937
+---------------------------------------------------------
+example call  >> python3 compareModels.py fort.7 -t -d -e
+---------------------------------------------------------
+by Tomasz Różański
