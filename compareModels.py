@@ -24,9 +24,15 @@ def readModel(filename):
             line = f.readline()
             l=[float(s.replace('D', 'E')) for s in line.split()]
             deepPoints.extend(l)
-        dfSpectrum = pd.read_table(f,header=None,delim_whitespace=True)
-        dfSpectrum = dfSpectrum.applymap(lambda x: float(x.replace('D', 'E')))
-        model=np.transpose(dfSpectrum.values.flatten().reshape((-1,NUMPAR)))
+        modelAllLines=f.readlines()
+        outList=[]
+        lines=[x.strip() for x in modelAllLines]
+        for line in lines:
+            outList.extend([float(s.replace('D', 'E')) for s in line.split()])
+        out=np.asarray(outList)
+        #dfSpectrum = pd.read_table(f,header=None,delim_whitespace=True)
+        #dfSpectrum = dfSpectrum.applymap(lambda x: float(x.replace('D', 'E')))
+        model=np.transpose(out.flatten().reshape((-1,NUMPAR)))
         #model contains
         # in model[0,:] - Temperature
         # in model[1,:] - Electron density
